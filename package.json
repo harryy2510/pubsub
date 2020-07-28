@@ -1,5 +1,5 @@
 {
-    "name": "@harryy/cra-template-library",
+    "name": "@harryy/pubsub",
     "version": "0.1.0",
     "scripts": {
         "start": "react-app-rewired start",
@@ -26,6 +26,7 @@
     },
     "dependencies": {
         "lodash-es": "^4.17.15",
+        "multimatch": "^4.0.0",
         "nanoid": "^3.1.11",
         "react": "^16.13.1",
         "react-dom": "^16.13.1"
