@@ -1,6 +1,9 @@
-import { forEach, omit, pickBy } from 'lodash-es'
+import { forEach, omit, pickBy, union } from 'lodash-es'
 import multimatch from 'multimatch'
 import { nanoid } from 'nanoid'
+
+declare let namespaces: string[]
+declare let subscriptions: Record<string, PubSubSubscription>
 
 export type PubSubData = {
     type: string
@@ -14,10 +17,17 @@ export interface PubSubSubscription {
 
 export type PubSubCallback = (data: PubSubData | null, namespaces: string[], key: string) => void
 
-let subscriptions: Record<string, PubSubSubscription> = {}
+subscriptions = {}
+namespaces = []
 
 const coerceArray = <T>(value: T | T[]): T[] => {
     return Array.isArray(value) ? value : [value]
+}
+
+const register = (namespace: string | string[]): string[] => {
+    const _namespaces = coerceArray(namespace).map((s) => s.split('/')[0])
+    namespaces = union(_namespaces, namespaces)
+    return namespaces
 }
 
 const publish = (namespace: string | string[], data: PubSubData | null = null): void => {
@@ -63,7 +73,10 @@ const PubSub = {
     clearSubscriptions,
     publish,
     subscribe,
-    unsubscribe
+    unsubscribe,
+    register,
+    namespaces,
+    subscriptions
 }
 
 export default PubSub
