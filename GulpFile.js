@@ -5,12 +5,9 @@ const jeditor = require('gulp-json-editor')
 const rimraf = require('gulp-rimraf')
 const shell = require('gulp-shell')
 const tsc = require('gulp-typescript')
-const transform = require('gulp-transform')
 const env = require('gulp-env')
 const tsconfig = require('./tsconfig.json')
 const babelConfig = require('./babel.config')
-
-const path = require('path')
 
 const envs = env.set({
     NODE_ENV: 'production'
