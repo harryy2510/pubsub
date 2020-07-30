@@ -2,6 +2,11 @@ import { forEach, omit, pickBy, union } from 'lodash-es'
 import multimatch from 'multimatch'
 import { nanoid } from 'nanoid'
 
+declare namespace globalThis {
+    let namespaces: string[]
+    let subscriptions: Record<string, PubSubSubscription>
+}
+
 export type PubSubData = {
     type: string
     data?: any
