@@ -2,9 +2,6 @@ import { forEach, omit, pickBy, union } from 'lodash-es'
 import multimatch from 'multimatch'
 import { nanoid } from 'nanoid'
 
-declare let namespaces: string[]
-declare let subscriptions: Record<string, PubSubSubscription>
-
 export type PubSubData = {
     type: string
     data?: any
@@ -17,8 +14,8 @@ export interface PubSubSubscription {
 
 export type PubSubCallback = (data: PubSubData | null, namespaces: string[], key: string) => void
 
-subscriptions = {}
-namespaces = []
+globalThis.namespaces = []
+globalThis.subscriptions = {}
 
 const coerceArray = <T>(value: T | T[]): T[] => {
     return Array.isArray(value) ? value : [value]
@@ -26,13 +23,13 @@ const coerceArray = <T>(value: T | T[]): T[] => {
 
 const register = (namespace: string | string[]): string[] => {
     const _namespaces = coerceArray(namespace).map((s) => s.split('/')[0])
-    namespaces = union(_namespaces, namespaces)
-    return namespaces
+    globalThis.namespaces = union(_namespaces, globalThis.namespaces)
+    return globalThis.namespaces
 }
 
 const publish = (namespace: string | string[], data: PubSubData | null = null): void => {
     const namespaces = coerceArray(namespace)
-    const subscribers = pickBy(subscriptions, (subscription) =>
+    const subscribers = pickBy(globalThis.subscriptions, (subscription) =>
         Boolean(multimatch(namespaces, subscription.namespaces).length)
     )
     forEach(subscribers, (s, k) => s.callback?.(data, namespaces, k))
@@ -45,7 +42,7 @@ const subscribe = (
     const key = nanoid()
     const subscriptionCallback: PubSubCallback = (...args) =>
         coerceArray(callback).forEach((c) => c?.(...args))
-    subscriptions[key] = {
+    globalThis.subscriptions[key] = {
         namespaces: coerceArray(namespace),
         callback: subscriptionCallback
     }
@@ -61,11 +58,11 @@ const subscribeOnce = (
 }
 
 const unsubscribe = (key: string): void => {
-    subscriptions = omit(subscriptions, key)
+    globalThis.subscriptions = omit(globalThis.subscriptions, key)
 }
 
 const clearSubscriptions = (): void => {
-    subscriptions = {}
+    globalThis.subscriptions = {}
 }
 
 const PubSub = {
@@ -75,8 +72,8 @@ const PubSub = {
     subscribe,
     unsubscribe,
     register,
-    namespaces,
-    subscriptions
+    namespaces: globalThis.namespaces,
+    subscriptions: globalThis.subscriptions
 }
 
 export default PubSub
