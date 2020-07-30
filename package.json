@@ -1,6 +1,6 @@
 {
     "name": "@harryy/pubsub",
-    "version": "0.1.3",
+    "version": "0.1.4",
     "scripts": {
         "start": "react-app-rewired start",
         "build": "react-app-rewired build",
