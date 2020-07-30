@@ -1,2 +1,2 @@
-export { default as Button } from './PubSub'
+export { default } from './PubSub'
 export * from './PubSub'
