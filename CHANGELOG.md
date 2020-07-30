@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.5](https://github.com/harryy2510/pubsub/compare/v0.1.4...v0.1.5) (2020-07-30)
+
+
+### Bug Fixes
+
+* global ([a4c9eeb](https://github.com/harryy2510/pubsub/commit/a4c9eebf3eeac14e8608a77ab1bc5b441255e068))
+
 ### [0.1.4](https://github.com/harryy2510/pubsub/compare/v0.1.3...v0.1.4) (2020-07-30)
 
 
