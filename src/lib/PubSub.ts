@@ -7,10 +7,15 @@ declare namespace globalThis {
     let subscriptions: Record<string, PubSubSubscription>
 }
 
-export type PubSubData = {
-    type: string
-    data?: any
-}
+export type PubSubData =
+    | string
+    | number
+    | boolean
+    | any
+    | {
+          type: string
+          data?: any
+      }
 
 export interface PubSubSubscription {
     namespaces: string[]
