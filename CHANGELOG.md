@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.8](https://github.com/harryy2510/pubsub/compare/v0.1.7...v0.1.8) (2021-02-18)
+
+
+### Bug Fixes
+
+* gulp file unnecessary import ([665a9f5](https://github.com/harryy2510/pubsub/commit/665a9f51dd0e1b758d9718d462717480e50b8843))
+* typings ([92439f2](https://github.com/harryy2510/pubsub/commit/92439f26be97cc6f2b8aea2efa0097b24b15cd03))
+
 ### [0.1.7](https://github.com/harryy2510/pubsub/compare/v0.1.6...v0.1.7) (2020-07-30)
 
 ### [0.1.6](https://github.com/harryy2510/pubsub/compare/v0.1.5...v0.1.6) (2020-07-30)
