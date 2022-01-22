@@ -28,7 +28,7 @@
     "dependencies": {
         "lodash-es": "^4.17.20",
         "multimatch": "^5.0.0",
-        "nanoid": "^3.1.20",
+        "nanoid": "^3.1.31",
         "react": "^17.0.1",
         "react-dom": "^17.0.1"
     },
